@@ -107,5 +107,23 @@
             android:textSize="15sp" />
 
     </TableRow>
+    
+    <TableRow
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/buttonRestart"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Restart"
+            android:textColor="#4235AF"
+            android:textStyle="bold"
+            android:background="#DAFFFFFF"
+            android:textSize="20sp"
+            android:layout_marginTop="5dp"/>
+
+    </TableRow>
 
 </TableLayout>
