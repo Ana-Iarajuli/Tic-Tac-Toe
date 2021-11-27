@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
@@ -19,6 +20,14 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var button7: Button
     private lateinit var button8: Button
     private lateinit var button9: Button
+    private lateinit var buttonRefresh: Button
+    private lateinit var buttonRestart: Button
+    private lateinit var player1_Points: TextView
+    private lateinit var player2_Points: TextView
+
+    private var player1Score = 0
+    private var player2Score = 0
+
     private var activePlayer = 1
     private var firstPlayer = ArrayList<Int>()
     private var secondPlayer = ArrayList<Int>()
@@ -27,11 +36,18 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         init()
+        refresh()
+        restart()
+
     }
 
     override fun onClick(clickedView: View?) {
 
+        buttonRefresh.setOnClickListener { refresh() }
+        buttonRestart.setOnClickListener { restart() }
+
         if (clickedView is Button){
+
             var buttonNumber = 0
 
             when(clickedView.id){
@@ -52,17 +68,18 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     }
 
+
     private fun playGame(clickedView: Button, buttonNumber: Number) {
 
         if (activePlayer == 1){
             clickedView.text = "X"
-            clickedView.setBackgroundColor(Color.RED)
+//            clickedView.setBackgroundColor(Color.RED)
             activePlayer = 2
             firstPlayer.add(buttonNumber as Int)
         }
         else {
             clickedView.text = "0"
-            clickedView.setBackgroundColor(Color.YELLOW)
+//            clickedView.setBackgroundColor(Color.YELLOW)
             activePlayer = 1
             secondPlayer.add(buttonNumber as Int)
         }
@@ -118,11 +135,88 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         }
         if (winnerPlayer == 1){
             Toast.makeText(this, "First player is the winner!", Toast.LENGTH_SHORT).show()
+            player1Score = player1Score + 1
+            player1_Points.text = player1Score.toString()
+            player1_Points.text = "Player 1: $player1Score"
         }
         else if (winnerPlayer == 2) {
             Toast.makeText(this, "Second player is the winner!", Toast.LENGTH_SHORT).show()
+            player2Score = player2Score + 1
+            player2_Points.text = player2Score.toString()
+            player2_Points.text = "Player 2: $player2Score"
         }
+
+        if (winnerPlayer != 0) { disable() }
+
     }
+    fun refresh() {
+        activePlayer = 1
+        activePlayer = 2
+
+        button1.text = ""
+        button2.text = ""
+        button3.text = ""
+        button4.text = ""
+        button5.text = ""
+        button6.text = ""
+        button7.text = ""
+        button8.text = ""
+        button9.text = ""
+
+        button1.isEnabled = true
+        button2.isEnabled = true
+        button3.isEnabled = true
+        button4.isEnabled = true
+        button5.isEnabled = true
+        button6.isEnabled = true
+        button7.isEnabled = true
+        button8.isEnabled = true
+        button9.isEnabled = true
+
+    }
+
+    fun restart() {
+//        activePlayer = 1
+//        activePlayer = 2
+//        firstPlayer.clear()
+//        secondPlayer.clear()
+//        player1_Points.text = "Player 1: 0"
+//        player2_Points.text = "Player 2: 0"
+
+        button1.text = ""
+        button2.text = ""
+        button3.text = ""
+        button4.text = ""
+        button5.text = ""
+        button6.text = ""
+        button7.text = ""
+        button8.text = ""
+        button9.text = ""
+
+        button1.isEnabled = true
+        button2.isEnabled = true
+        button3.isEnabled = true
+        button4.isEnabled = true
+        button5.isEnabled = true
+        button6.isEnabled = true
+        button7.isEnabled = true
+        button8.isEnabled = true
+        button9.isEnabled = true
+
+    }
+
+    fun disable() {
+        button1.isEnabled = false
+        button2.isEnabled = false
+        button3.isEnabled = false
+        button4.isEnabled = false
+        button5.isEnabled = false
+        button6.isEnabled = false
+        button7.isEnabled = false
+        button8.isEnabled = false
+        button9.isEnabled = false
+    }
+
 
 
     private fun init(){
@@ -136,6 +230,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         button7 = findViewById(R.id.button7)
         button8 = findViewById(R.id.button8)
         button9 = findViewById(R.id.button9)
+        player1_Points = findViewById(R.id.player1)
+        player2_Points = findViewById(R.id.player2)
+        buttonRefresh = findViewById(R.id.buttonRefresh)
+        buttonRestart = findViewById(R.id.buttonRestart)
+
 
 
         button1.setOnClickListener(this)
@@ -147,6 +246,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         button7.setOnClickListener(this)
         button8.setOnClickListener(this)
         button9.setOnClickListener(this)
+//        buttonRefresh.setOnClickListener(this)
+
 
     }
 }
