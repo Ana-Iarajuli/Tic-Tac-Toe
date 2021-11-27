@@ -19,6 +19,7 @@
             android:textSize="23sp"
             android:textStyle="bold"
             android:textColor="#1531CC"
+            android:layout_gravity=""
             android:layout_marginLeft="20dp"
             android:layout_marginRight="150dp"
             android:layout_marginBottom="10dp"/>
@@ -175,23 +176,6 @@
             android:layout_marginTop="5dp"/>
 
     </TableRow>
-    
-    <TableRow
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center">
 
-        <Button
-            android:id="@+id/buttonRestart"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="Restart"
-            android:textColor="#4235AF"
-            android:textStyle="bold"
-            android:background="#DAFFFFFF"
-            android:textSize="20sp"
-            android:layout_marginTop="5dp"/>
-
-    </TableRow>
 
 </TableLayout>
